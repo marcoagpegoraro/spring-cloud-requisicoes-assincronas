@@ -11,7 +11,7 @@ musics = [
 ]
 
 function getMusics() {
-  // sleep()
+  sleep()
   return musics
 }
 

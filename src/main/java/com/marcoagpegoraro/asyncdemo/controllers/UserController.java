@@ -65,20 +65,20 @@ public class UserController {
         final  CompletableFuture<List<Quote>> quotesFuture =
                 CompletableFuture.supplyAsync(() -> quotesService.getInfos(id));
 
-        final Info info = infos.get();
+        final Info infos = infosFuture.get();
         final UserResponse user = UserResponse.builder()
-                .name(info.getName())
-                .job(info.getJob())
-                .birthDate(info.getBirthDate())
-                .musics(musics.get())
-                .quotes(quotes.get())
+                .name(infos.getName())
+                .job(infos.getJob())
+                .birthDate(infos.getBirthDate())
+                .musics(musicsFuture.get())
+                .quotes(quotesFuture.get())
                 .build();
 
-        CompletableFuture.completedFuture(new UserResponse())
-                .thenCombineAsync(infosFuture,  () -> infosFuture.get())
-        .thenApplyAsync(() -> {
-            return new UserResponse();
-        });
+//        CompletableFuture.completedFuture(new UserResponse())
+//                .thenCombineAsync(infosFuture,  () -> infosFuture.get())
+//        .thenApplyAsync(() -> {
+//            return new UserResponse();
+//        });
 
 
         long endTime = System.currentTimeMillis();
