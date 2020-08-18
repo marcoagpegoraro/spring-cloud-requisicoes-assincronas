@@ -1,5 +1,6 @@
 const express = require('express')
 const sleep = require('./utils').sleep
+const port = 3002;
 
 const app = express()
 
@@ -16,4 +17,6 @@ app.get('/:id', (req, res) => {
   return res.json(infos)
 })
 
-module.exports = app
+app.listen(port, () => {
+  console.log(`Servidor de informações rodando em ${port}`)
+})

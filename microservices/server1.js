@@ -1,5 +1,6 @@
 const express = require('express')
 const sleep = require('./utils').sleep
+const port = 3001;
 
 const app = express()
 
@@ -10,7 +11,7 @@ musics = [
 ]
 
 function getMusics() {
-  sleep()
+  // sleep()
   return musics
 }
 
@@ -19,4 +20,6 @@ app.get('/:id', (req, res) => {
   return res.json(musics)
 })
 
-module.exports = app
+app.listen(port, () => {
+  console.log(`Servidor de musicas rodando em ${port}`)
+})
