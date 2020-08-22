@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "music", url = "http://localhost:3001")
+@FeignClient(name = "music",
+        url = "http://localhost:3001")
 public interface MusicsClient {
     @GetMapping("/{id}")
-    ResponseEntity<List<Music>> getMusics(@PathVariable final long id);
+    ResponseEntity<List<Music>> getMusics(
+            @PathVariable final long id);
 }

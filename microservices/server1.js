@@ -1,5 +1,5 @@
 const express = require('express')
-const sleep = require('./utils').sleep
+const sleepOneSecond = require('./utils').sleepOneSecond
 const port = 3001;
 
 const app = express()
@@ -11,7 +11,7 @@ musics = [
 ]
 
 function getMusics() {
-  sleep()
+  sleepOneSecond()
   return musics
 }
 

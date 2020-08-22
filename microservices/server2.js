@@ -1,14 +1,17 @@
 const express = require('express')
-const sleep = require('./utils').sleep
+const sleepOneSecond = require('./utils').sleepOneSecond
 const port = 3002;
 
 const app = express()
 
-infos = { name: "Marco Antonio", job: "Developer", birthDate: new Date(1999, 9, 17) }
-
+infos = {
+  name: "Marco Antonio",
+  job: "Developer",
+  birthDate: new Date(1999, 9, 17)
+}
 
 function getInfos() {
-  sleep()
+  sleepOneSecond()
   return infos
 }
 

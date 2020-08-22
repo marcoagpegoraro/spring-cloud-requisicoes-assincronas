@@ -24,15 +24,15 @@ import java.util.concurrent.Executors;
 public class UserController {
 
     @Autowired
-    InfosService infosService;
+    private InfosService infosService;
     @Autowired
-    MusicsService musicsService;
+    private MusicsService musicsService;
     @Autowired
-    QuotesService quotesService;
+    private QuotesService quotesService;
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getAllInfoUsers(@PathVariable final long id){
-        long startTime = System.currentTimeMillis();
+        final long startTime = System.currentTimeMillis();
 
         final Info infos = infosService.getInfos(id);
 
@@ -48,15 +48,15 @@ public class UserController {
                 .quotes(quotes)
                 .build();
 
-        long endTime = System.currentTimeMillis();
-        float secFinal = (endTime - startTime) / 1000F; System.out.println("Total: " + secFinal);
+        final long endTime = System.currentTimeMillis();
+        final float secFinal = (endTime - startTime) / 1000F; System.out.println("Total: " + secFinal);
 
         return ResponseEntity.ok(user);
     }
 
     @GetMapping("/async/{id}")
     public ResponseEntity<UserResponse> getAllInfoUsersAsync(@PathVariable final long id) throws ExecutionException, InterruptedException {
-        long startTime = System.currentTimeMillis();
+        final long startTime = System.currentTimeMillis();
 
         final CompletableFuture<Info> infosFuture =
                 CompletableFuture.supplyAsync(() -> infosService.getInfos(id));
@@ -74,15 +74,8 @@ public class UserController {
                 .quotes(quotesFuture.get())
                 .build();
 
-//        CompletableFuture.completedFuture(new UserResponse())
-//                .thenCombineAsync(infosFuture,  () -> infosFuture.get())
-//        .thenApplyAsync(() -> {
-//            return new UserResponse();
-//        });
-
-
-        long endTime = System.currentTimeMillis();
-        float secFinal = (endTime - startTime) / 1000F; System.out.println("Total: " + secFinal);
+        final long endTime = System.currentTimeMillis();
+        final float secFinal = (endTime - startTime) / 1000F; System.out.println("Total: " + secFinal);
 
         return ResponseEntity.ok(user);
     }
